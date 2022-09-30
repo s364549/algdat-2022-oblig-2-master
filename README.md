@@ -2,16 +2,16 @@
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
-* Navn Navnesen, S123456, s123456@oslomet.no
-* ...
+* Dahlstrøm, Thor-Kristian, s360745, s360745@oslomet.no
+* Kristiansen, Thomas, s364532, s364532@oslomet.no
+* Dinh, Daniel, s364549, s364549@oslomet.no
 
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Per har hatt hovedansvar for oppgave 1, 3, og 5. 
-* Else har hatt hovedansvar for oppgave 2, 4, og 6. 
-* Fatima har hatt hovedansvar for oppgave 7 og 8. 
-* Vi har i fellesskap løst oppgave 10. 
+* Daniel har hatt hovedansvar for oppgave 1, 4, 7, og 10. 
+* Thor-Kristian har hatt hovedansvar for oppgave 2, 5, og 8. 
+* Thomas har hatt hovedansvar for oppgave 3, 6 og 9.
 
 # Oppgavebeskrivelse
 
