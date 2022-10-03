@@ -6,10 +6,10 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
-
     /**
      * Node class
      *
@@ -40,9 +40,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
-    public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
-    }
+    public DobbeltLenketListe(T[] a) { throw new UnsupportedOperationException();}
 
     public Liste<T> subliste(int fra, int til) {
         throw new UnsupportedOperationException();
@@ -59,9 +57,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
-    }
+    public boolean leggInn(T verdi) { throw new UnsupportedOperationException(); }
 
     @Override
     public void leggInn(int indeks, T verdi) {
