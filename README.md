@@ -25,7 +25,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 3b - Liste subliste(int fra, int til)
 
-4 - int indeksTil(T verdi)
+4 - int indeksTil(T verdi) & boolean inneholder(T verdi).
 
 5 - void leggInn(int indeks, T verdi)
 

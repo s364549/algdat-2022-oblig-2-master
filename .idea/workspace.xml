@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cda296c-f7b5-47f7-8454-b28d3a94712b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +46,7 @@
       <workItem from="1664361697732" duration="104000" />
       <workItem from="1664789714939" duration="8000" />
       <workItem from="1664789737990" duration="1316000" />
-      <workItem from="1664881462460" duration="366000" />
+      <workItem from="1664881462460" duration="502000" />
     </task>
     <servers />
   </component>
