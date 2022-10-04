@@ -214,7 +214,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException();
+        quicksort(liste, 0, liste.antall() - 1, c);
+    }
+
+    private static <T> void quicksort(Liste<T> liste, int low, int high, Comparator<? super T> c){
+
+    }
+
+    private static <T> void swap(Liste<T> liste, int a, int b){
+        T temp = liste.oppdater(a, liste.hent(b));;
+        liste.oppdater(b, temp);
     }
 
 } // class DobbeltLenketListe
