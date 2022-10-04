@@ -122,7 +122,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         else{                               //i andre cases er det i orden å gjøre det på denne måten
-            hale.neste = nyNode;            //deklarerer hale.neste til å være den nyenoden
+            hale.neste = nyNode;            //deklarerer hale.neste til å være den nye noden
             nyNode.forrige = hale;          //deretter får vi den nye noden til å peke på hale som forrige
             hale = nyNode;                  //setter så hale sin verdi til å være den nye noden
             hale.neste = null;              //setter tilbake at hale sin neste verdi er null
@@ -134,21 +134,58 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        Node<T> nyNode = new Node(verdi);
-        if(indeks < antall/2){                      // sjekker om vi skal begynne i hode eller i hale
-            Node current = hode;                    //Starter i hode
-
-            for (int i = 0; i < indeks-1; i++) {    //beveger til riktig indeks
-                current = current.neste;
-            }
-            nyNode.forrige = current;               //posisjonerer først pekerne til nyNode
-            nyNode.neste = current.neste;
-            current.neste = nyNode;                 //så må pekerne til de nodene som allerede var der posisjoneres
-            current = nyNode.neste;                 //til den nye noden, ingen andre pekeendringer trenger å skje
-            current.forrige = nyNode;               
-            antall++;
-            endringer++;
+        if(indeks > antall ||indeks < 0){      //sjekker at ingenting skal legges inn utenfor listen
+            throw new IndexOutOfBoundsException("indeks er utenfor lista!");
         }
+
+        Node<T> nyNode = new Node(verdi);
+
+        if(indeks == 0){            //om den nye skal legges inn i 0, blir den nytt hode
+            Node current = hode;
+
+            nyNode.neste = current; //nyNode sin neste peker til hode sin verdi
+            current.forrige = nyNode; //hode sin forrige peker til den nye noden
+            hode = nyNode; //nyNode er nå det nye hodet
+            hode.forrige = null;
+        }
+
+        else if(indeks == antall){          //om den nye noden skal legges inn som hale
+            Node current = hale;
+
+            nyNode.forrige = current;       //nyNode forrige blir peker til halen
+            current.neste = nyNode;         //halen sin neste peker til nyNode
+            hale = nyNode;                  //nyNode blir her til halen
+            hale.neste = null;              //halen neste peker er null
+        }
+
+        else if(indeks < antall/2){         //om vi skal starte i hode
+            Node current = hode;
+
+            for (int i = 0; i < indeks-1; i++) {
+                current = current.neste;            //finner frem til riktig indeksering
+            }
+            nyNode.forrige = current;               //nyNode forrige blir til noden vi står i
+            nyNode.neste = current.neste;           //nyNode neste blir til den noden vi står i sin neste node
+            current.neste = nyNode;                 //peker nå til at den vi står i sin neste nå blir den nye noden
+            current = nyNode.neste;                 //beveger oss til noden som er etter nyNode
+            current.forrige = nyNode;               //erklærer noden vi står i sin forrige node som nyNode
+        }
+
+        else{
+            Node current = hale; // hvis ikke så starter vi i halen
+
+            for (int i = antall-1; i > indeks; i--) {
+                current = current.forrige;          //indekserer oss bakfra
+            }
+            nyNode.neste = current;                 //nyNode blir til den vi står i
+            nyNode.forrige = current.forrige;       //nyNode forrige blir til den vi står i sin forrige
+            current.forrige = nyNode;               //den vi står i sin forrige blir til nyNode
+            current = nyNode.forrige;               //den vi står i blir til nyNode sin forrige node
+            current.neste = nyNode;                 //den vi står i sin neste blir til nyNode
+
+        }
+        antall++; //dette skjer uansett hva, så sant ikke metoden thrower en exception
+        endringer++;
     }
 
     @Override
