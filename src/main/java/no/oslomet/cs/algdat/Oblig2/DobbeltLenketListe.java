@@ -192,11 +192,45 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+
+        StringBuilder utString = new StringBuilder();
+        utString.append("["); //setter opp starten av strengen
+
+        Node<T> current = hode; //starter i posisjonen til hodet. Current er en verdi som forteller hvor vi står i
+
+        for (int i = 0; i < antall; i++) {
+            if(i != antall-1){ //sjekker om vi er i siste element i listen eller ikke
+                utString.append(current.verdi+ ", ");
+            }
+            else{
+                utString.append(current.verdi); // om vi er i siste element, så vil vi ikke legge på ", " på slutten av strengen
+            }
+            current = current.neste; //går videre til neste element
+        }
+        utString.append("]"); //avslutter utskriften
+        return utString.toString(); //returnerer en String verdi til toString() funksjonen
     }
 
     public String omvendtString() {
-        throw new UnsupportedOperationException();
+
+        StringBuilder utString = new StringBuilder();
+        utString.append("["); //bygger opp starten av strengen
+
+        Node<T> current = hale; //starter i halen
+
+        for (int i = 0; i < antall; i++) {
+            if(i != antall-1){ //samme som i toString(), sjekker at vi ikke er i siste element
+                utString.append(current.verdi +", ");
+            }
+            else{
+                utString.append(current.verdi); //om vi er i siste element legger vi ikke til noe mer enn verdien
+            }
+
+            current = current.forrige; //går bakover gjennom lista, ved å bruke .forrige
+        }
+
+        utString.append("]"); //avslutten utstrengen
+        return utString.toString(); 
     }
 
     @Override
