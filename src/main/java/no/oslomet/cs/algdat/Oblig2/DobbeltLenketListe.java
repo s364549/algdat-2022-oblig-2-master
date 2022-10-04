@@ -167,13 +167,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             valgtNode = valgtNode.neste;
         }
 
-        endringer++; antall = 0;
-
         //måte 2
+        /*
         while(valgtNode != null){
             fjern(0);
             valgtNode = valgtNode.neste;
         }
+
+         */
+
+        endringer++; antall = 0;
     }
 
     @Override
