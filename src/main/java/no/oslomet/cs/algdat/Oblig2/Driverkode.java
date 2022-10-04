@@ -1,5 +1,7 @@
 package no.oslomet.cs.algdat.Oblig2;
 
+import java.util.*;
+
 public class Driverkode {
     public static void main(String[] args) {
         //Oppg 1
@@ -53,6 +55,28 @@ public class Driverkode {
 // Lars Anders Bodil Kari Per Berit
 // Lars Anders Bodil Kari Per Berit
 
+        //Oppg 9
+        DobbeltLenketListe<String> liste5 =
+                new DobbeltLenketListe<>(new String[]
+                        {"Birger","Lars","Anders","Bodil","Kari","Per","Berit"});
+        liste5.fjernHvis(navn1 -> navn1.charAt(0) == 'B'); // fjerner navn som starter med B
+        System.out.println(liste5 + " " + liste5.omvendtString());
+// Utskrift: [Lars, Anders, Kari, Per] [Per, Kari, Anders, Lars]
+
+        //Oppg 10
+        String[] navn2 = {"Lars","Anders","Bodil","Kari","Per","Berit"};
+        Liste<String> listeA = new DobbeltLenketListe<>(navn2);
+        //Liste<String> listeB = new TabellListe<>(navn2);
+        //Liste<String> listeC = new EnkeltLenketListe<>(navn2);
+        DobbeltLenketListe.sorter(listeA, Comparator.naturalOrder());
+        //DobbeltLenketListe.sorter(listeB, Comparator.naturalOrder());
+        //DobbeltLenketListe.sorter(listeC, Comparator.naturalOrder());
+        System.out.println(listeA); // [Anders, Berit, Bodil, Kari, Lars, Per]
+        //System.out.println(listeB); // [Anders, Berit, Bodil, Kari, Lars, Per]
+        //System.out.println(listeC); // [Anders, Berit, Bodil, Kari, Lars, Per]
+// Tabellen navn er upåvirket:
+        System.out.println(Arrays.toString(navn2));
+// [Lars, Anders, Bodil, Kari, Per, Berit]
 
     }
 }

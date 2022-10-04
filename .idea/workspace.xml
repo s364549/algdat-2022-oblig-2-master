@@ -7,8 +7,8 @@
     <list default="true" id="4cda296c-f7b5-47f7-8454-b28d3a94712b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$DobbeltLenketListeIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$DobbeltLenketListeIterator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Driverkode.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Driverkode.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/Driverkode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/Driverkode.java" afterDir="false" />
     </list>
@@ -81,6 +81,7 @@
       <workItem from="1664789714939" duration="8000" />
       <workItem from="1664789737990" duration="1316000" />
       <workItem from="1664792520952" duration="7921000" />
+      <workItem from="1664866286434" duration="7395000" />
     </task>
     <servers />
   </component>
@@ -97,5 +98,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

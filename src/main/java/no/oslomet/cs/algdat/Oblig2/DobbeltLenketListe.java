@@ -404,15 +404,69 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove() {
+            //Hvis det ikke er tillatt å kalle metoden, kastes IllegalStateException./
+            if(fjernOK = false){throw new IllegalStateException();}
+
+            //Hvis endringer og iteratorendringer er forskjellige, kastes ConcurrentModificationException
             if(endringer != iteratorendringer){throw new ConcurrentModificationException();}
+
+            fjernOK = false;
+
+            if(antall == 1){
+                hode = hale = null;
+                denne.forrige = null;
+            }else if(denne == null){
+                hale = hale.forrige;
+                hale.neste = null;
+            }else if(denne.forrige == hode){
+                hode = denne;
+                denne.forrige = null;
+            }else{
+                denne.forrige.forrige.neste = denne;
+                denne.forrige = denne.forrige.forrige;
+            }
+
+            antall--; endringer++; iteratorendringer++;
+
         }
 
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException();
+        quicksort(liste, 0, liste.antall() - 1, c);
     }
 
+    private static <T> void quicksort(Liste<T> liste, int low, int high, Comparator<? super T> c){
+        if(low >= high){
+            return;
+        }
+
+        T pivot = liste.hent(high);
+
+        int left = low;
+        int right = high;
+
+        while(left < right){
+            while(left < right && c.compare(liste.hent(left), pivot) < 0){
+                left++;
+            }
+
+            while(left < right && c.compare(liste.hent(right), pivot) > 0){
+                right--;
+            }
+            swap(liste, left, right);
+        }
+
+        swap(liste, left, high);
+
+        quicksort(liste, low, left - 1, c);
+        quicksort(liste, left + 1, high, c);
+    }
+
+    private static <T> void swap(Liste<T> liste, int a, int b){
+        T temp = liste.oppdater(a, liste.hent(b));;
+        liste.oppdater(b, temp);
+    }
 } // class DobbeltLenketListe
 
 
