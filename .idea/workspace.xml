@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cda296c-f7b5-47f7-8454-b28d3a94712b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$DobbeltLenketListeIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$DobbeltLenketListeIterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Driverkode.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Driverkode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Liste.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Liste.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/no.oslomet.cs.algdat.Oblig2.Oblig2Test.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/no.oslomet.cs.algdat.Oblig2.Oblig2Test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/no.oslomet.cs.algdat.Oblig2.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/no.oslomet.cs.algdat.Oblig2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/Driverkode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/Driverkode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/Liste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/Liste.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +59,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.Oblig2Test">
     <configuration name="Driverkode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="no.oslomet.cs.algdat.Oblig2.Driverkode" />
       <module name="algdat-2022-oblig-2-master.main" />
@@ -63,8 +73,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Oblig2Test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;no.oslomet.cs.algdat.Oblig2.Oblig2Test&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Oblig2Test" />
         <item itemvalue="Application.Driverkode" />
       </list>
     </recent_temporary>
@@ -81,7 +113,7 @@
       <workItem from="1664789714939" duration="8000" />
       <workItem from="1664789737990" duration="1316000" />
       <workItem from="1664792520952" duration="7921000" />
-      <workItem from="1664866286434" duration="7395000" />
+      <workItem from="1664866286434" duration="10532000" />
     </task>
     <servers />
   </component>
@@ -99,5 +131,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/no/oslomet/cs/algdat/Oblig2/Oblig2Test.java</url>
+          <line>1317</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

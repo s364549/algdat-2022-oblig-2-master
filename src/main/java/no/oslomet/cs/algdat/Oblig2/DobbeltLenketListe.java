@@ -40,31 +40,37 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             throw new NullPointerException("Tabellen a er null!");
         }
 
-        if(a.length != 0){
+        if(a.length != 0){  //hvis a ikke er tomt array
 
         antall = 0;
 
-            for(int i = 0 ; i < a.length ; i++) {
+            for(int i = 0 ; i < a.length ; i++) {   //iterererer gjennom hvert array-elem
 
-                if(a[i] != null) {
+                if(a[i] != null) {  //lager ikke node for null-verdier i a
 
-                    Node<T> newNode = new Node<>(a[i]);
+                    Node<T> newNode = new Node<>(a[i]); //opprett instanse av Node<T> med verdi fra i-plass i a
 
-                    if (hode == null) {
-                        hode = hale = newNode;
-                        //hodes forrige vil være null
-                        hode.forrige = null;
-                        //hales neste vil være null
-                        hale.neste = null;
+                    if (hode == null) {                 //hvis hode ikke er laget hittill
+                        hode = hale = newNode;          //er den nye noden den eneste og
+                                                        //  derfor både hale og hode
+                        hode.forrige = null;            //hode->forrige vil være null
+                        hale.neste = null;              //hale->neste vil være null
+
+                        //[]
+                        //[<-N->]
                     } else {
-                        //legg newNode1 til slutten av listen. hale->neste vil være newNode1
-                        hale.neste = newNode;
-                        //newNode1->forrige vil være hale
-                        newNode.forrige = hale;
-                        //newNode1 blir ny hale
-                        hale = newNode;
-                        //hales neste peker blir null
-                        hale.neste = null;
+
+                        hale.neste = newNode;           //legg newNode til slutten av listen.
+                                                        //opprinnelig hale->neste vil være newNode
+                        newNode.forrige = hale;         //newNode->forrige vil være hale
+                        hale = newNode;                 //newNode blir ny hale
+                        hale.neste = null;              //hales neste peker blir null
+
+                        //[a,b]
+                        //[a,b-> N]
+                        //[a,b-> <-N]
+                        //[a,b-> <-N <-hale]
+                        //[a,b-> <-N->]
                     }
 
                     antall++;
@@ -78,9 +84,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til) {
-        DobbeltLenketListe<T> subliste = new DobbeltLenketListe<>();
+        DobbeltLenketListe<T> subliste = new DobbeltLenketListe<>();    //ny instanse som til slutt returneres
 
-        subliste.antall = subliste.endringer = 0;
+        subliste.antall = subliste.endringer = 0;   //antall noder og endringer er 0
 
         fratilKontroll(antall, fra, til);
 
@@ -100,7 +106,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (til > antall)                          // til er utenfor tabellen
             throw new IndexOutOfBoundsException
-                    ("til(" + til + ") > tablengde(" + antall + ")");
+                    ("til(" + til + ") > antall(" + antall + ")");
 
         if (fra > til)                                // fra er større enn til
             throw new IllegalArgumentException
@@ -147,7 +153,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        indeksKontroll(indeks, false);
+        if(verdi.equals(null)){throw new IllegalArgumentException();}
+        if (indeks < 0 || indeks > antall()) {
+            throw new IndexOutOfBoundsException(melding(indeks));
+        }
         /*
         1) listen er tom,
         2) verdien skal legges først,
@@ -155,7 +164,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         4) verdien skal legges mellom to andre verdier.
         */
 
-        if (antall == 0){
+        if (hode == null){
             leggInn(verdi);
         } else if(indeks == 0){
             Node<T> newNode = new Node<>(verdi);
@@ -164,6 +173,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             newNode.neste = hode;
             newNode.forrige = null;
             hode = newNode;
+
+            antall++;
         } else if(indeks == antall - 1){
             leggInn(verdi);
         } else {
@@ -173,10 +184,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             newNode.neste = finnNode(indeks);
             newNode.forrige = finnNode(indeks - 1);
             finnNode(indeks - 1).neste = newNode;
+            antall++;
         }
 
         //antallet og endringer må økes etter innlegging.
-        endringer++; antall++;
+        endringer++;
     }
 
     @Override
@@ -199,7 +211,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(verdi == null){return -1;}
 
         for(int i = 0 ; i < antall ; i++){
-            if(finnNode(i).verdi == verdi){
+            if(finnNode(i).verdi.equals(verdi)){
                 return i;
             }
         }
@@ -211,13 +223,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public T oppdater(int indeks, T nyverdi) {
         indeksKontroll(indeks, false);
         T opprinneligVerdi = finnNode(indeks).verdi;
-        finnNode(indeks).verdi = Objects.requireNonNull(nyverdi);
+        Objects.requireNonNull(nyverdi);
+        finnNode(indeks).verdi = nyverdi;
         return opprinneligVerdi;
     }
 
     @Override
     public boolean fjern(T verdi) {
-        if(antall == 0) {return false;}
+        if(antall == 0 || verdi.equals(null)) {return false;}
 
         for(int i = 0 ; i < antall ; i++){
 
@@ -447,11 +460,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         int right = high;
 
         while(left < right){
-            while(left < right && c.compare(liste.hent(left), pivot) < 0){
+            while(c.compare(liste.hent(left), pivot) < 0 && left < right){
                 left++;
             }
 
-            while(left < right && c.compare(liste.hent(right), pivot) > 0){
+            while(c.compare(liste.hent(right), pivot) > 0 && left < right){
                 right--;
             }
             swap(liste, left, right);
