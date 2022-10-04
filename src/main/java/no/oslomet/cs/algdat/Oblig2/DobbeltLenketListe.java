@@ -287,21 +287,40 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void nullstill() {
         //måte 1.
+
+        if(antall == 0){return;}
+
+        if(antall == 1){
+            hode.verdi = null;
+            hode = hale = null;
+            antall = 0;
+            return;
+        }
+
         Node<T> valgtNode = hode;
 
         while(valgtNode != null){
-            valgtNode.neste = valgtNode.forrige = null;
             valgtNode.verdi = null;
+            valgtNode.forrige = null;
+
             valgtNode = valgtNode.neste;
+
+            if(valgtNode != null){
+                valgtNode.forrige.neste = null;
+            }
         }
 
+        hode = hale = null;
         endringer++; antall = 0;
+
 
         //måte 2
 
-        while(valgtNode != null){
+        Node<T> valgtNode1 = hode;
+
+        while(valgtNode1 != null){
             fjern(0);
-            valgtNode = valgtNode.neste;
+            valgtNode1 = valgtNode1.neste;
         }
     }
 
