@@ -134,6 +134,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
+        if(verdi == null) {
+            throw new NullPointerException("Verdi er null!");
+        }
+
         if(indeks > antall ||indeks < 0){      //sjekker at ingenting skal legges inn utenfor listen
             throw new IndexOutOfBoundsException("indeks er utenfor lista!");
         }
