@@ -107,7 +107,30 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public boolean leggInn(T verdi) { throw new UnsupportedOperationException(); }
+    public boolean leggInn(T verdi) {
+        Objects.requireNonNull(verdi);      //sjekker om verdi er null, om den er det så vil den throwe en exception
+
+        Node <T> nyNode = new Node(verdi);  //setter opp noden til å få verdien til den innlagte verdien
+
+        if(antall == 0){                    //spesiell case om det ikke enda finnes et element i listen
+            hode = hale = nyNode;           //deklarer både hode og hale til å være den nye noden
+            hode.neste = nyNode;            //Oppgaven ber om at hode og hale skal peke tibake på nyNode
+            hale.forrige = nyNode;
+            hode.forrige = null;            //hode sin forrige er da null og hale sin neste er null;
+            hale.neste = null;
+            antall++;                       //øker antall ettersom vi nå har 1 element i lista, men øker ikke endringer ettersom at dette er da en ny liste
+        }
+
+        else{                               //i andre cases er det i orden å gjøre det på denne måten
+            hale.neste = nyNode;            //deklarerer hale.neste til å være den nyenoden
+            nyNode.forrige = hale;          //deretter får vi den nye noden til å peke på hale som forrige
+            hale = nyNode;                  //setter så hale sin verdi til å være den nye noden
+            hale.neste = null;              //setter tilbake at hale sin neste verdi er null
+            antall++;                       //øker antall, ettersom vi nå har enda flere elementer i lista
+            endringer++;                    //her endres den ekisterende lista
+        }
+        return true;
+    }
 
     @Override
     public void leggInn(int indeks, T verdi) {
@@ -194,43 +217,43 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public String toString() {
 
         StringBuilder utString = new StringBuilder();
-        utString.append("["); //setter opp starten av strengen
+        utString.append("[");                           //setter opp starten av strengen
 
-        Node<T> current = hode; //starter i posisjonen til hodet. Current er en verdi som forteller hvor vi står i
-
+        Node<T> current = hode;                         //starter i posisjonen til hodet. Current er en verdi som
+                                                        // forteller hvor vi står i
         for (int i = 0; i < antall; i++) {
-            if(i != antall-1){ //sjekker om vi er i siste element i listen eller ikke
+            if(i != antall-1){                          //sjekker om vi er i siste element i listen eller ikke
                 utString.append(current.verdi+ ", ");
             }
             else{
-                utString.append(current.verdi); // om vi er i siste element, så vil vi ikke legge på ", " på slutten av strengen
+                utString.append(current.verdi);         // om vi er i siste element, så vil vi ikke legge på ", " på slutten av strengen
             }
-            current = current.neste; //går videre til neste element
+            current = current.neste;                    //går videre til neste element
         }
-        utString.append("]"); //avslutter utskriften
-        return utString.toString(); //returnerer en String verdi til toString() funksjonen
+        utString.append("]");                           //avslutter utskriften
+        return utString.toString();                     //returnerer en String verdi til toString() funksjonen
     }
 
     public String omvendtString() {
 
         StringBuilder utString = new StringBuilder();
-        utString.append("["); //bygger opp starten av strengen
+        utString.append("[");                           //bygger opp starten av strengen
 
-        Node<T> current = hale; //starter i halen
+        Node<T> current = hale;                         //starter i halen
 
         for (int i = 0; i < antall; i++) {
-            if(i != antall-1){ //samme som i toString(), sjekker at vi ikke er i siste element
+            if(i != antall-1){                          //samme som i toString(), sjekker at vi ikke er i siste element
                 utString.append(current.verdi +", ");
             }
             else{
-                utString.append(current.verdi); //om vi er i siste element legger vi ikke til noe mer enn verdien
+                utString.append(current.verdi);         //om vi er i siste element legger vi ikke til noe mer enn verdien
             }
 
-            current = current.forrige; //går bakover gjennom lista, ved å bruke .forrige
+            current = current.forrige;                  //går bakover gjennom lista, ved å bruke .forrige
         }
 
-        utString.append("]"); //avslutten utstrengen
-        return utString.toString(); 
+        utString.append("]");                           //avslutten utstrengen
+        return utString.toString();
     }
 
     @Override
