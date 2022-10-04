@@ -15,6 +15,31 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
-I oppgave 1 så gikk vi frem ved å ...
+1 - int antall() & boolean tom()
 
-I oppgave 2 så brukte vi en ... til å ...
+2a - String toString() & String omvendtString().
+
+2b - boolean leggInn(T verdi)
+
+3a - Node<T> finnNode(int indeks)
+
+3b - Liste<T> subliste(int fra, int til)
+
+4 - int indeksTil(T verdi)
+
+5 - void leggInn(int indeks, T verdi)
+
+6 - T fjern(int indeks) og boolean fjern(T verdi).
+
+7 - void nullstill(), velg den beste av to måter
+
+8 - DobbeltLenketListeIterator
+8a - T next()
+8b - Iterator<T> iterator()
+8c - private DobbeltLenketListeIterator(int indeks)
+8d - Iterator<T> iterator(int indeks)
+
+9 - void remove()
+
+10 - public static <T> void sorter(Liste<T> liste, Comparator<? super T> c)
+

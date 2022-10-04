@@ -460,11 +460,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         int right = high;
 
         while(left < right){
-            while(c.compare(liste.hent(left), pivot) < 0 && left < right){
+            while(c.compare(liste.hent(left), pivot) <= 0 && left < right){
                 left++;
             }
 
-            while(c.compare(liste.hent(right), pivot) > 0 && left < right){
+            while(c.compare(liste.hent(right), pivot) >= 0 && left < right){
                 right--;
             }
             swap(liste, left, right);
