@@ -134,7 +134,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException();
+        Node<T> nyNode = new Node(verdi);
+        if(indeks < antall/2){                      // sjekker om vi skal begynne i hode eller i hale
+            Node current = hode;                    //Starter i hode
+
+            for (int i = 0; i < indeks-1; i++) {    //beveger til riktig indeks
+                current = current.neste;
+            }
+            nyNode.forrige = current;               //posisjonerer først pekerne til nyNode
+            nyNode.neste = current.neste;
+            current.neste = nyNode;                 //så må pekerne til de nodene som allerede var der posisjoneres
+            current = nyNode.neste;                 //til den nye noden, ingen andre pekeendringer trenger å skje
+            current.forrige = nyNode;               
+            antall++;
+            endringer++;
+        }
     }
 
     @Override
