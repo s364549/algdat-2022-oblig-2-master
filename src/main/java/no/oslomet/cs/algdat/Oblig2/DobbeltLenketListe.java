@@ -3,11 +3,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
-
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Objects;
-
+import java.util.*;
 
 public class DobbeltLenketListe<T> implements Liste<T> {
     /**
@@ -88,7 +84,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         fratilKontroll(antall, fra, til);
 
-        for(int i = fra; i < fra + til ; i++){
+        for(int i = fra; i < til ; i++){
             subliste.leggInn(finnNode(i).verdi);
             subliste.antall++;
         }
@@ -313,6 +309,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             skrivNode = skrivNode.neste;
         }
 
+        ut.append("]");
         return ut.toString();
     }
 
@@ -332,16 +329,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             skrivNode = skrivNode.forrige;
         }
 
+        ut.append("]");
+
         return ut.toString();
     }
 
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
+        DobbeltLenketListeIterator iterator = new DobbeltLenketListeIterator();
+        return iterator;
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        DobbeltLenketListeIterator iterator = new DobbeltLenketListeIterator(indeks);
+        return iterator;
     }
 
     private Node<T> finnNode(int indeks){
@@ -366,6 +368,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
+    //---ITERATOREN---//
+
     private class DobbeltLenketListeIterator implements Iterator<T> {
         private Node<T> denne;
         private boolean fjernOK;
@@ -378,7 +382,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
-            throw new UnsupportedOperationException();
+            denne = finnNode(indeks);
+            fjernOK = false;  // blir sann når next() kalles
+            iteratorendringer = endringer;  // teller endringer
         }
 
         @Override
@@ -388,12 +394,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-            throw new UnsupportedOperationException();
+            if(iteratorendringer != endringer){ throw new ConcurrentModificationException();}
+            if(!hasNext()){throw new NoSuchElementException();}
+            fjernOK = true;
+            T returverdi = denne.verdi;
+            denne = denne.neste;
+            return returverdi;
         }
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+            if(endringer != iteratorendringer){throw new ConcurrentModificationException();}
         }
 
     } // class DobbeltLenketListeIterator
