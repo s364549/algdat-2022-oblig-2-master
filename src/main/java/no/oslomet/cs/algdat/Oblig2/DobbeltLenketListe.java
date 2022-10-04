@@ -40,7 +40,53 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
-    public DobbeltLenketListe(T[] a) { throw new UnsupportedOperationException();}
+    public DobbeltLenketListe(T[] a) {
+        if (a == null){
+            throw new NullPointerException("Tabellen a er null!");
+        }
+
+        if(a.length != 0){  //hvis a ikke er tomt array
+
+            antall = 0;
+
+            for(int i = 0 ; i < a.length ; i++) {   //iterererer gjennom hvert array-elem
+
+                if(a[i] != null) {  //lager ikke node for null-verdier i a
+
+                    Node<T> newNode = new Node<>(a[i]); //opprett instanse av Node<T> med verdi fra i-plass i a
+
+                    if (hode == null) {                 //hvis hode ikke er laget hittill
+                        hode = hale = newNode;          //er den nye noden den eneste og
+                        //  derfor både hale og hode
+                        hode.forrige = null;            //hode->forrige vil være null
+                        hale.neste = null;              //hale->neste vil være null
+
+                        //[]
+                        //[<-N->]
+                    } else {
+
+                        hale.neste = newNode;           //legg newNode til slutten av listen.
+                        //opprinnelig hale->neste vil være newNode
+                        newNode.forrige = hale;         //newNode->forrige vil være hale
+                        hale = newNode;                 //newNode blir ny hale
+                        hale.neste = null;              //hales neste peker blir null
+
+                        //[a,b]
+                        //[a,b-> N]
+                        //[a,b-> <-N]
+                        //[a,b-> <-N <-hale]
+                        //[a,b-> <-N->]
+                    }
+
+                    antall++;
+                }
+            }
+
+            //Variabelen endringer skal være 0.
+            endringer = 0;
+
+        }
+    }
 
     public Liste<T> subliste(int fra, int til) {
         throw new UnsupportedOperationException();
