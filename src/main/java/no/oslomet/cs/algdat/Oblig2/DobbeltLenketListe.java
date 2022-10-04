@@ -218,7 +218,30 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private static <T> void quicksort(Liste<T> liste, int low, int high, Comparator<? super T> c){
+        if(low >= high){
+            return;
+        }
 
+        T pivot = liste.hent(high);
+
+        int left = low;
+        int right = high;
+
+        while(left < right){
+            while(c.compare(liste.hent(left), pivot) <= 0 && left < right){
+                left++;
+            }
+
+            while(c.compare(liste.hent(right), pivot) >= 0 && left < right){
+                right--;
+            }
+            swap(liste, left, right);
+        }
+
+        swap(liste, left, high);
+
+        quicksort(liste, low, left - 1, c);
+        quicksort(liste, left + 1, high, c);
     }
 
     private static <T> void swap(Liste<T> liste, int a, int b){
