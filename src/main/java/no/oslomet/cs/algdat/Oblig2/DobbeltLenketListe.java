@@ -138,7 +138,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        T temp;                     // oppretter hjelpvariabel
+
+        if (indeks == 0) {          // sjekker om indeksen er første noden
+            temp = hode.verdi;      //setter hjelpevariabelen til noden som fjernes
+            hode = hode.neste;      // setter hoden til neste verdi og fjerner første node
+            if (antall == 1) {      //brukes om det bare er en verdi i listen
+                hale = null;
+            }
+        }
+        
     }
 
     @Override
