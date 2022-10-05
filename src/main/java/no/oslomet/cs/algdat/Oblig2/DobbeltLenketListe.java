@@ -99,7 +99,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(nyverdi, "Det er ikke tilatt med null-verdier"); //feilmelding om det er nullverdier
+        indeksKontroll(indeks,false); // kontrollerer indeksen
+
+        T gammelverdi = finnNode(indeks).verdi; // Setter gammelverdi til indeks verdi
+        finnNode(indeks).verdi = nyverdi; // setter indeks verdi til nyverdi
+        return gammelverdi; // returnerer gammelverdi
     }
 
     @Override
