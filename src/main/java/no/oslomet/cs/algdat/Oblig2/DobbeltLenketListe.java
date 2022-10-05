@@ -79,6 +79,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         subliste.antall = subliste.endringer = 0;
         fratilKontroll(antall,fra,til);         // kontrollerer intervallet
+
+        for (int i = fra; i < til; i++) {       // lager en forløkke
+            subliste.leggInn(finnNode(i).verdi); // legger inn nodene
+            subliste.antall++;                  // øker antallet
+        }
+        return subliste;                        // returnerer listen
     }
 
     @Override
