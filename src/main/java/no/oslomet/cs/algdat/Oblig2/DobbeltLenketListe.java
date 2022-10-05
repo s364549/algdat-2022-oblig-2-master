@@ -50,7 +50,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             for (int i = 0; i < indeks; i++) {    // for løkke som går i gjennom listen
                 node = node.neste;
             }
+        } else {                                // om indeksen er større enn halvparten av antall starter det ved halen
+            node = hale;
+            for (int i = antall -1; i > indeks; i--) { // for løkke som går gjennom listen fra halen
+                node = node.forrige;
+            }
         }
+        return node;                        // returner noden
     }
 
     public Liste<T> subliste(int fra, int til) {
