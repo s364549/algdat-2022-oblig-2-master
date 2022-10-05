@@ -155,6 +155,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             p.neste = q.neste;      // hopper over q og fjerner valgt node
         }
 
+        if (q == hale) {            // sjekker om q er siste node
+            hale = p;               // setter hale til p slik at q blir fjernet
+        }
+
+        q.verdi = null;             // nuller ut verdien til q
+        q.neste = null;             // nuller ut nestepekeren
+
+        antall--;                   // reduserer antallet til listen
+        return true;                // returnerer at fjerningen var vellykket
 
     }
 
