@@ -42,6 +42,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) { throw new UnsupportedOperationException();}
 
+    private Node<T> finnNode(int indeks) {
+        Node<T> node;
+
+        if (indeks < antall / 2) {               // om indeksen er lavere eller lik halvparten av antall starter det ved hode
+            node = hode;
+            for (int i = 0; i < indeks; i++) {    // for løkke som går i gjennom listen
+                node = node.neste;
+            }
+        }
+    }
+
     public Liste<T> subliste(int fra, int til) {
         throw new UnsupportedOperationException();
     }
