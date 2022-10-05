@@ -75,7 +75,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+        DobbeltLenketListe<T> subliste = new DobbeltLenketListe<>(); //lager en ny lenket liste
+
+        subliste.antall = subliste.endringer = 0;
+        fratilKontroll(antall,fra,til);         // kontrollerer intervallet
     }
 
     @Override
