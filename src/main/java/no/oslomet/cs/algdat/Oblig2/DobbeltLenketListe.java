@@ -146,8 +146,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if (antall == 1) {      //brukes om det bare er en verdi i listen
                 hale = null;
             }
+        } else {
+            Node<T> p = finnNode(indeks - 1); // setter p til noden før indeksen
+            Node<T> q = p.neste;    // setter q til noden som skal fjernes
+            temp = q.verdi;         // setter hjelpevariabelen til noden som fjernes
+
+            if (q == hale) {        // sjekker om noden som skal fjernes er siste node
+                hale = p;           // fjerner siste node
+            }
+            p.neste = q.neste;      // hopper over q og fjerner q fra listen
         }
-        
+        antall--;                   // reduserer antallet til listen
+        return temp;
     }
 
     @Override
