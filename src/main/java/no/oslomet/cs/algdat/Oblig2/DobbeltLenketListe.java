@@ -152,11 +152,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if(antall == 0){                    //spesiell case om det ikke enda finnes et element i listen
             hode = hale = nyNode;           //deklarer både hode og hale til å være den nye noden
-            hode.neste = nyNode;            //Oppgaven ber om at hode og hale skal peke tibake på nyNode
-            hale.forrige = nyNode;
-            hode.forrige = null;            //hode sin forrige er da null og hale sin neste er null;
-            hale.neste = null;
-            antall++;                       //øker antall ettersom vi nå har 1 element i lista, men øker ikke endringer ettersom at dette er da en ny liste
+            nyNode.forrige = nyNode.neste = null;            //hode sin forrige er da null og hale sin neste er null;
         }
 
         else{                               //i andre cases er det i orden å gjøre det på denne måten
@@ -164,9 +160,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             nyNode.forrige = hale;          //deretter får vi den nye noden til å peke på hale som forrige
             hale = nyNode;                  //setter så hale sin verdi til å være den nye noden
             hale.neste = null;              //setter tilbake at hale sin neste verdi er null
-            antall++;                       //øker antall, ettersom vi nå har enda flere elementer i lista
-            endringer++;                    //her endres den ekisterende lista
         }
+
+        antall++;                       //øker antall, ettersom vi nå har enda flere elementer i lista
+        endringer++;        //samme med endringer
         return true; }
 
     @Override
@@ -179,53 +176,49 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         Node<T> nyNode = new Node(verdi);
+
         if(antall == 0) { //hvis det ikke finnes noe liste fra før av så skapes den her
-            hode = hale = nyNode;
-            hode.neste = nyNode;
-            hale.forrige = nyNode;
-            hode.forrige = null;
-            hale.neste = null;
+            leggInn(verdi);
         }
-        else if(indeks == 1 && antall == 1){ // om indeks er 1 og antall er 1, vil det si bare 1 eksisterende node
-            hode.neste = nyNode; //hode sin neste peker blir til nyNode
-            hode.forrige = null; //hode forrige blir til null,
-            hale = nyNode;       //hale blir til nyNode
-            hale.forrige = hode; //hale forrige peker til hode
-            hale.neste = null;   //hale neste peker nå til null
-            endringer++;
-        }
+
         else if(indeks == 0){            //om den nye skal legges inn i 0, blir den nytt hode
             Node current = hode;
 
-            nyNode.neste = current; //nyNode sin neste peker til hode sin verdi
-            current.forrige = nyNode; //hode sin forrige peker til den nye noden
-            hode = nyNode; //nyNode er nå det nye hodet
+            nyNode.neste = current;     //nyNode sin neste peker til hode sin verdi
+            current.forrige = nyNode;   //hode sin forrige peker til den nye noden
+            hode = nyNode;              //nyNode er nå det nye hodet
             hode.forrige = null;
-            endringer++;
+            endringer++; antall++;
         }
 
         else if(indeks == antall){          //om den nye noden skal legges inn som hale
+            /*
             Node current = hale;
 
             nyNode.forrige = current;       //nyNode forrige blir peker til halen
             current.neste = nyNode;         //halen sin neste peker til nyNode
             hale = nyNode;                  //nyNode blir her til halen
             hale.neste = null;              //halen neste peker er null
-            endringer++;
+            endringer++; antall++;
+
+             */
+            leggInn(verdi);
         }
 
         else if(indeks < antall/2){         //om vi skal starte i hode
             Node current = hode;
 
-            for (int i = 0; i < indeks-1; i++) {
+            for (int i = 0; i < indeks - 1; i++) {
                 current = current.neste;            //finner frem til riktig indeksering
             }
+
             nyNode.forrige = current;               //nyNode forrige blir til noden vi står i
             nyNode.neste = current.neste;           //nyNode neste blir til den noden vi står i sin neste node
             current.neste = nyNode;                 //peker nå til at den vi står i sin neste nå blir den nye noden
+
             current = nyNode.neste;                 //beveger oss til noden som er etter nyNode
             current.forrige = nyNode;               //erklærer noden vi står i sin forrige node som nyNode
-            endringer++;
+            endringer++; antall++;
         }
 
         else{
@@ -234,15 +227,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             for (int i = antall-1; i > indeks; i--) {
                 current = current.forrige;          //indekserer oss bakfra
             }
+
             nyNode.neste = current;                 //nyNode blir til den vi står i
             nyNode.forrige = current.forrige;       //nyNode forrige blir til den vi står i sin forrige
             current.forrige = nyNode;               //den vi står i sin forrige blir til nyNode
+
             current = nyNode.forrige;               //den vi står i blir til nyNode sin forrige node
             current.neste = nyNode;                 //den vi står i sin neste blir til nyNode
-            endringer++;
+            endringer++; antall++;
 
         }
-        antall++; //dette skjer uansett hva, så sant ikke metoden thrower en exception
     }
 
     @Override
