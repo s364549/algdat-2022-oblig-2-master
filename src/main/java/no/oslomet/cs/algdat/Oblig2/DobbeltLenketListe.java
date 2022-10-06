@@ -466,7 +466,30 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             fjernOK = false; // setter fjernOK til false om den gikk gjennom begge if setningene
 
             Node<T> q = hode; // oppretter hjelpevariabel
-            
+
+            if (hode.neste == denne) {    //sjekker om denne er første node
+                hode = hode.neste;
+                if (denne == null) {      //sjekker om listen er tom
+                    hale = null;
+                }
+            } else {
+                Node<T> r = hode;          //oppretter forgjenger
+
+                while(r.neste.neste != denne) { // while-løkke for å finne forgjengeren til forgjerngeren til denne
+                    r = r.neste; // flytter r
+                }
+
+                q = r.neste;        // setter q som noden som skal fjernes
+                r.neste = denne;    // hopper over q
+                if (denne == null) { // sjekker om q var siste noden i listen
+                    hale = r;
+                }
+            }
+
+            q.verdi = null;         // nuller ut verdien
+            q.neste = null;         // nuller ut neste pekeren
+
+            antall--;               // reduserer antall
         }
 
     } // class DobbeltLenketListeIterator
