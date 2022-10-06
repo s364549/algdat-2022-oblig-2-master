@@ -96,7 +96,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         } else {                                // om indeksen er større enn halvparten av antall starter det ved halen
             node = hale;
-            for (int i = antall -1; i > indeks; i--) { // for løkke som går gjennom listen fra halen
+            for (int i = antall - 1; i > indeks; i--) { // for løkke som går gjennom listen fra halen
                 node = node.forrige;
             }
         }
@@ -178,6 +178,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> nyNode = new Node(verdi);
 
         if(antall == 0) { //hvis det ikke finnes noe liste fra før av så skapes den her
+            /*
+            hode = hale = nyNode;
+            hode.neste = nyNode;
+            hale.forrige = nyNode;
+            hode.forrige = null;
+            hale.neste = null;
+            */
             leggInn(verdi);
         }
 
@@ -293,17 +300,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return false;
         } else if (q == hode) {     // sjekker om q er første node
             hode = hode.neste;      // går over q
+            hode.forrige = null;
+            //[hode -> a, <-b,c]
+            //[a, hode-> a<-b,c]
+            //[a, hode-> b, null <- b, c]
         } else {
             p.neste = q.neste;      // hopper over q og fjerner valgt node
         }
 
         if (q == hale) {            // sjekker om q er siste node
             hale = p;               // setter hale til p slik at q blir fjernet
+            hale.neste = null;
         }
-
+/*
         q.verdi = null;             // nuller ut verdien til q
         q.neste = null;             // nuller ut nestepekeren
-
+*/
         antall--;                   // reduserer antallet til listen
         return true;                // returnerer at fjerningen var vellykket
 
@@ -316,8 +328,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (indeks == 0) {          // sjekker om indeksen er første noden
             temp = hode.verdi;      //setter hjelpevariabelen til noden som fjernes
             hode = hode.neste;      // setter hoden til neste verdi og fjerner første node
+
             if (antall == 1) {      //brukes om det bare er en verdi i listen
-                hale = null;
+                hale = hode = null;
             }
         } else {
             Node<T> p = finnNode(indeks - 1); // setter p til noden før indeksen
@@ -326,7 +339,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
             if (q == hale) {        // sjekker om noden som skal fjernes er siste node
                 hale = p;           // fjerner siste node
+                hale.neste = null;
             }
+
             p.neste = q.neste;      // hopper over q og fjerner q fra listen
         }
         antall--;                   // reduserer antallet til listen

@@ -21,7 +21,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 2b - boolean leggInn(T verdi)
 
-3a - Node<T> finnNode(int indeks)
+3a - Node<T> finnNode(int indeks), T oppdater(int indeks, T nyverdi) og public T hent(int indeks). 
 
 3b - Liste<T> subliste(int fra, int til)
 
