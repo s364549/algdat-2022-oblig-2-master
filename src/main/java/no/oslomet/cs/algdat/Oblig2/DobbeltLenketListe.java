@@ -36,11 +36,55 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int antall;            // antall noder i listen
     private int endringer;         // antall endringer i listen
 
-    public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
-    }
+    public DobbeltLenketListe() {}
 
-    public DobbeltLenketListe(T[] a) { throw new UnsupportedOperationException();}
+    public DobbeltLenketListe(T[] a) {
+        if (a == null){
+            throw new NullPointerException("Tabellen a er null!");
+        }
+
+        if(a.length != 0){  //hvis a ikke er tomt array
+
+            antall = 0;
+
+            for(int i = 0 ; i < a.length ; i++) {   //iterererer gjennom hvert array-elem
+
+                if(a[i] != null) {  //lager ikke node for null-verdier i a
+
+                    Node<T> newNode = new Node<>(a[i]); //opprett instanse av Node<T> med verdi fra i-plass i a
+
+                    if (hode == null) {                 //hvis hode ikke er laget hittill
+                        hode = hale = newNode;          //er den nye noden den eneste og
+                        //  derfor både hale og hode
+                        hode.forrige = null;            //hode->forrige vil være null
+                        hale.neste = null;              //hale->neste vil være null
+
+                        //[]
+                        //[<-N->]
+                    } else {
+
+                        hale.neste = newNode;           //legg newNode til slutten av listen.
+                        //opprinnelig hale->neste vil være newNode
+                        newNode.forrige = hale;         //newNode->forrige vil være hale
+                        hale = newNode;                 //newNode blir ny hale
+                        hale.neste = null;              //hales neste peker blir null
+
+                        //[a,b]
+                        //[a,b-> N]
+                        //[a,b-> <-N]
+                        //[a,b-> <-N <-hale]
+                        //[a,b-> <-N->]
+                    }
+
+                    antall++;
+                }
+            }
+
+            //Variabelen endringer skal være 0.
+            endringer = 0;
+
+        }
+    }
 
     private Node<T> finnNode(int indeks) {
         Node<T> node;
@@ -118,7 +162,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        if(verdi == null){return -1;}
+
+        for(int i = 0 ; i < antall ; i++){
+            if(finnNode(i).verdi.equals(verdi)){
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     @Override
@@ -193,7 +245,31 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException();
+        //måte 1 - 12 ms
+
+        if(antall == 0){return;}    //tom tabell er nullstilt
+
+        Node<T> valgtNode = hode;
+
+        //måte 1.
+        while(valgtNode != null){
+            valgtNode.neste = valgtNode.forrige = null;
+            valgtNode.verdi = null;
+            valgtNode = valgtNode.neste;
+        }
+        valgtNode.forrige = null;
+
+        //måte 2
+        /*
+        while(valgtNode != null){
+            fjern(0);
+            valgtNode = valgtNode.neste;
+        }
+
+         */
+        if(valgtNode != null){
+            valgtNode.forrige.neste = null;
+        }
     }
 
     @Override
@@ -247,7 +323,39 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException();
+        quicksort(liste, 0, liste.antall() - 1, c);
+    }
+
+    private static <T> void quicksort(Liste<T> liste, int low, int high, Comparator<? super T> c){
+        if(low >= high){
+            return;
+        }
+
+        T pivot = liste.hent(high);
+
+        int left = low;
+        int right = high;
+
+        while(left < right){
+            while(c.compare(liste.hent(left), pivot) <= 0 && left < right){
+                left++;
+            }
+
+            while(c.compare(liste.hent(right), pivot) >= 0 && left < right){
+                right--;
+            }
+            swap(liste, left, right);
+        }
+
+        swap(liste, left, high);
+
+        quicksort(liste, low, left - 1, c);
+        quicksort(liste, left + 1, high, c);
+    }
+
+    private static <T> void swap(Liste<T> liste, int a, int b){
+        T temp = liste.oppdater(a, liste.hent(b));;
+        liste.oppdater(b, temp);
     }
 
 } // class DobbeltLenketListe

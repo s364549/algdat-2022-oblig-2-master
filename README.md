@@ -15,7 +15,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
-1 - int antall() & boolean tom()
+1 - int antall() & boolean tom(), og public DobbeltLenketListe(T[] a) {}
 
 2a - String toString() & String omvendtString().
 
