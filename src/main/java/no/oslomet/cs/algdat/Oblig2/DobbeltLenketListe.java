@@ -5,6 +5,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -454,7 +455,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+            if (!fjernOK) {
+                throw new IllegalStateException("Ugyldig tilstand");//melding som blir gitt om det ikke er tilatt å kalle metoden
+            }
+
+            if (endringer != iteratorendringer) { // sjekker om endringer og iteratorendringer er forskjellige
+                throw new ConcurrentModificationException();
+            }
+
+            fjernOK = false; // setter fjernOK til false om den gikk gjennom begge if setningene
+
+            Node<T> q = hode; // oppretter hjelpevariabel
+            
         }
 
     } // class DobbeltLenketListeIterator
