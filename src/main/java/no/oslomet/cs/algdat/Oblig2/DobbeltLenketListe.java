@@ -423,7 +423,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false); //sjekker at indeks er lovlig
+        DobbeltLenketListeIterator iterator = new DobbeltLenketListeIterator(indeks);  //samme som i iterator()
+        return iterator;
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
@@ -438,7 +440,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
-            throw new UnsupportedOperationException();
+            denne = hode;                       //setter denne til å være hode
+            for (int i = 0; i < indeks; i++) {  //itererer gjennom noder til vi er i riktig posisjon
+                denne = hode.neste;
+            }
+            fjernOK = false;                    //setter fjernOK til false, denne blir true gjennom Next
+            iteratorendringer = endringer;      //teller endringer
+
         }
 
         @Override
