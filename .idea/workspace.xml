@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06cea197-0666-4b22-b2f7-537b7285ee90" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Beholder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Beholder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$DobbeltLenketListeIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$DobbeltLenketListeIterator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Liste.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Liste.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/no/oslomet/cs/algdat/Oblig2/Oblig2Test$1Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/no/oslomet/cs/algdat/Oblig2/Oblig2Test$1Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/test/no/oslomet/cs/algdat/Oblig2/Oblig2Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/no/oslomet/cs/algdat/Oblig2/Oblig2Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/no/oslomet/cs/algdat/Oblig2/Oblig2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/no/oslomet/cs/algdat/Oblig2/Oblig2Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

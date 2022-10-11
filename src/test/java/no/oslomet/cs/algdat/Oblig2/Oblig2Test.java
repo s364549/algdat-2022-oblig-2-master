@@ -728,7 +728,6 @@ class Oblig2Test {
             System.out.println("Oppgave 6i: Feil i fjern(indeks)-metoden!");
         }
 
-        System.out.println(liste.toString());
         if (!liste.omvendtString().equals("[F, E, C, B]")) {
             antallFeil++;
             System.out.println("Oppgave 6j: Feil i fjern(indeks)-metoden!");
@@ -953,7 +952,7 @@ class Oblig2Test {
         }
 
         liste.nullstill();
-
+        
         if (liste.antall() != 0) {
             antallFeil++;
             System.out.println

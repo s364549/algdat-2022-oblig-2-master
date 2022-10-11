@@ -479,10 +479,32 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void nullstill() {
 
         //måte 1
-        
+        if(antall != 0){
+
+            Node<T> current = hode;
+            Node<T> hjelpeNode;
+
+            int teller = antall;
+            for (int i = 0; i < teller; i++) {
+                if(i == teller-1){
+                    hode = hale = null;
+                }else{
+                    current.verdi = null;
+                    hjelpeNode = current.neste;
+                    hjelpeNode.forrige = null;
+                    current.neste = null;
+                    current = hjelpeNode;
+                }
+
+            endringer++; antall--;
+            }
+        }
+
         //måte 2
-
-
+        int teller = antall;
+        for (int i = 0; i < teller; i++) {
+            fjern(0);
+        }
 
         /*
         //måte 1 - 12 ms
