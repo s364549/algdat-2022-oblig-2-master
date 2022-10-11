@@ -109,7 +109,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (til > antall)                          // til er utenfor tabellen
             throw new IndexOutOfBoundsException
-                    ("til(" + til + ") > tablengde(" + antall + ")");
+                    ("til(" + til + ") > antall(" + antall + ")");
 
         if (fra > til)                                // fra er større enn til
             throw new IllegalArgumentException
@@ -117,6 +117,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til) {
+
         DobbeltLenketListe<T> subliste = new DobbeltLenketListe<>(); //lager en ny lenket liste
 
         subliste.antall = subliste.endringer = 0;
@@ -246,7 +247,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
+        if(indeksTil(verdi) == -1){ //dette betyr at verdien ikke finnes i listen
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -280,6 +285,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
+
         if (verdi == null) {        // sjekker om verdi er null
             return false;
         }
@@ -297,8 +303,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (q == null) {            // fant ikke verdien
             return false;
         } else if (q == hode) {     // sjekker om q er første node
+
             hode = hode.neste;      // går over q
-            hode.forrige = null;
+            //hode.forrige = null;
             //[hode -> a, <-b,c]
             //[a, hode-> a<-b,c]
             //[a, hode-> b, null <- b, c]
@@ -308,23 +315,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (q == hale) {            // sjekker om q er siste node
             hale = p;               // setter hale til p slik at q blir fjernet
-            hale.neste = null;
+            //hale.neste = null;
         }
-/*
+
         q.verdi = null;             // nuller ut verdien til q
         q.neste = null;             // nuller ut nestepekeren
-*/
-        antall--;                   // reduserer antallet til listen
+
+        antall--; endringer++;                   // reduserer antallet til listen
         return true;                // returnerer at fjerningen var vellykket
 
     }
 
     @Override
     public T fjern(int indeks) {
-        T temp;                     // oppretter hjelpvariabel
+
+        indeksKontroll(indeks, false);
+        if(antall == 0){return null;} //opprinnelig verdi til en ikke eksisterend node er null
+
+        T opprinneligVerdi = finnNode(indeks).verdi;     // oppretter hjelpvariabel
 
         if (indeks == 0) {          // sjekker om indeksen er første noden
-            temp = hode.verdi;      //setter hjelpevariabelen til noden som fjernes
             hode = hode.neste;      // setter hoden til neste verdi og fjerner første node
 
             if (antall == 1) {      //brukes om det bare er en verdi i listen
@@ -333,17 +343,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         } else {
             Node<T> p = finnNode(indeks - 1); // setter p til noden før indeksen
             Node<T> q = p.neste;    // setter q til noden som skal fjernes
-            temp = q.verdi;         // setter hjelpevariabelen til noden som fjernes
 
             if (q == hale) {        // sjekker om noden som skal fjernes er siste node
                 hale = p;           // fjerner siste node
                 hale.neste = null;
             }
+                p.neste = q.neste;      // hopper over q og fjerner q fra listen
 
-            p.neste = q.neste;      // hopper over q og fjerner q fra listen
         }
-        antall--;                   // reduserer antallet til listen
-        return temp;
+        antall--; endringer++;                    // reduserer antallet til listen
+        return opprinneligVerdi;
+
     }
 
     @Override
@@ -377,43 +387,43 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        StringBuilder utString = new StringBuilder();
-        utString.append("["); //setter opp starten av strengen
+        Node<T> skrivNode = hode;
+        StringBuilder ut = new StringBuilder();
 
-        Node<T> current = hode; //starter i posisjonen til hodet. Current er en verdi som forteller hvor vi står i
+        ut.append("[");
 
-        for (int i = 0; i < antall; i++) {
-            if(i != antall-1){ //sjekker om vi er i siste element i listen eller ikke
-                utString.append(current.verdi+ ", ");
+        while(skrivNode != null){   //så lenge den valgte node ikke er null
+            ut.append(skrivNode.verdi);
+
+            if(skrivNode.neste != null) {   //hvis valgt el. ikke er siste
+                ut.append(", ");            //så printer vi komma
             }
-            else{
-                utString.append(current.verdi); // om vi er i siste element, så vil vi ikke legge på ", " på slutten av strengen
-            }
-            current = current.neste; //går videre til neste element
+
+            skrivNode = skrivNode.neste;
         }
-        utString.append("]"); //avslutter utskriften
-        return utString.toString(); //returnerer en String verdi til toString() funksjonen
+
+        ut.append("]");
+        return ut.toString();
     }
 
     public String omvendtString() {
-        StringBuilder utString = new StringBuilder();
-        utString.append("["); //bygger opp starten av strengen
+        Node<T> skrivNode = hale;
+        StringBuilder ut = new StringBuilder();
 
-        Node<T> current = hale; //starter i halen
+        ut.append("[");
 
-        for (int i = 0; i < antall; i++) {
-            if(i != antall-1){ //samme som i toString(), sjekker at vi ikke er i siste element
-                utString.append(current.verdi +", ");
+        while(skrivNode != null){
+            ut.append(skrivNode.verdi);
+
+            if(skrivNode.forrige != null) {
+                ut.append(", ");
             }
-            else{
-                utString.append(current.verdi); //om vi er i siste element legger vi ikke til noe mer enn verdien
-            }
 
-            current = current.forrige; //går bakover gjennom lista, ved å bruke .forrige
+            skrivNode = skrivNode.forrige;
         }
 
-        utString.append("]"); //avslutten utstrengen
-        return utString.toString();
+        ut.append("]");
+        return ut.toString();
     }
 
     @Override

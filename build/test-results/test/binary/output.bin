@@ -1,1 +1,7 @@
-)Oppgave 10b: Ikke unntak for tom liste!
+2Oppgave 6a: Indeks 0 finnes ikke i en tom liste!
+#Oppgave 6c: Indeks 7 finnes ikke!
+$Oppgave 6e: Indeks -1 finnes ikke!
+7Oppgave 6ga: Feil returverdi i metoden fjern(indeks)!
+;Oppgave 6gb: Feil i antall-oppdateringen i fjern(indeks)!
+?             Reduseres ikke antall? Reduserers den to ganger!
+:Oppgave 6h: Feil i antall-oppdateringen i fjern(indeks)!
