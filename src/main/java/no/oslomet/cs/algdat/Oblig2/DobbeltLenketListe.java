@@ -280,7 +280,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         T gammelverdi = finnNode(indeks).verdi; // Setter gammelverdi til indeks verdi
         finnNode(indeks).verdi = nyverdi; // setter indeks verdi til nyverdi
+        endringer++;
         return gammelverdi; // returnerer gammelverdi
+
     }
 
     @Override
@@ -599,13 +601,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
-            denne = hode;                       //setter denne til å være hode
-            for (int i = 0; i < indeks; i++) {  //itererer gjennom noder til vi er i riktig posisjon
-                denne = hode.neste;
-            }
+            denne = finnNode(indeks);                       //setter denne til å være hode
             fjernOK = false;                    //setter fjernOK til false, denne blir true gjennom Next
             iteratorendringer = endringer;      //teller endringer
-
         }
 
         @Override
@@ -621,8 +619,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if(!hasNext()){                       //sjekker at variablen "denne" ikke er null;
                 throw new NoSuchElementException();
             }
-            fjernOK = true;
             T utVerdi = denne.verdi; //verdi som skal returneres settes
+            fjernOK = true;
             denne = denne.neste;     //denne flyttes til neste node
             return utVerdi;
         }
