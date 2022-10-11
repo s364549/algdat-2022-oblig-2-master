@@ -286,7 +286,68 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T verdi) {
 
-        if (verdi == null) {        // sjekker om verdi er null
+        if(verdi == null){
+            return false;
+        }
+
+        int teller = 0;
+        Node<T> current = hode;
+        while(!current.verdi.equals(verdi) ){
+            current = current.neste;
+            teller++;
+            if(current == null){
+                return false;
+            }
+        }
+        if(antall == 0){
+            return false;
+        }
+        else if(antall == 1){
+
+            hode = hale = null;
+        }
+        else if(teller+1 == antall){
+            current = hale;
+            Node<T> hjelpeNode = current.forrige;
+
+            hjelpeNode.neste = null;
+            hale.forrige = null;
+            hale = hjelpeNode;
+        }
+        else if(teller == 0){
+            hode = hode.neste;
+            hode.forrige = null;
+        }
+        else if(teller < antall/2){
+            current = hode;
+            for (int i = 0; i < teller; i++) {
+                current = current.neste;
+
+            }
+
+            Node<T> hjelpeNodeNeste = current.neste;
+            Node<T> hjelpeNodeForrige = current.forrige;
+            hjelpeNodeForrige.neste = hjelpeNodeNeste;
+            hjelpeNodeNeste.forrige = hjelpeNodeForrige;
+
+        }
+        else{
+            current = hale;
+            for (int i = antall-1; i > teller; i--) {
+                current = current.forrige;
+
+            }
+
+            Node<T> hjelpeNodeNeste = current.neste;
+            Node<T> hjelpeNodeForrige = current.forrige;
+            hjelpeNodeForrige.neste = hjelpeNodeNeste;
+            hjelpeNodeNeste.forrige = hjelpeNodeForrige;
+
+        }
+        antall--; endringer ++;
+        return true;
+
+        /*if (verdi == null) {        // sjekker om verdi er null
             return false;
         }
 
@@ -323,13 +384,70 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         antall--; endringer++;                   // reduserer antallet til listen
         return true;                // returnerer at fjerningen var vellykket
-
+        */
     }
 
     @Override
     public T fjern(int indeks) {
 
         indeksKontroll(indeks, false);
+        if(indeks < 0){
+            throw new NullPointerException("out of bounds");
+        }
+
+        else{
+            T returVerdi = finnNode(indeks).verdi;
+            Node<T> current;
+
+            if(antall == 0){
+                return null;
+            }
+            else if(antall == 1){
+                hale = hode = null;
+            }
+            else if(indeks+1 == antall){
+                current = hale;
+                Node<T> hjelpeNode = current.forrige;
+
+                hjelpeNode.neste = null;
+                hale.forrige = null;
+                hale = hjelpeNode;
+            }
+            else if(indeks == 0){
+                hode = hode.neste;
+                hode.forrige = null;
+            }
+            else if(indeks < antall/2){
+                current = hode;
+                for (int i = 0; i < indeks; i++) {
+                    current = current.neste;
+
+                }
+
+                Node<T> hjelpeNodeNeste = current.neste;
+                Node<T> hjelpeNodeForrige = current.forrige;
+                hjelpeNodeForrige.neste = hjelpeNodeNeste;
+                hjelpeNodeNeste.forrige = hjelpeNodeForrige;
+
+            }
+            else{
+                current = hale;
+                for (int i = antall-1; i > indeks; i--) {
+                    current = current.forrige;
+
+                }
+
+                Node<T> hjelpeNodeNeste = current.neste;
+                Node<T> hjelpeNodeForrige = current.forrige;
+                hjelpeNodeForrige.neste = hjelpeNodeNeste;
+                hjelpeNodeNeste.forrige = hjelpeNodeForrige;
+
+            }
+            antall--; endringer ++;
+            return returVerdi;
+        }
+
+        /*indeksKontroll(indeks, false);
         if(antall == 0){return null;} //opprinnelig verdi til en ikke eksisterend node er null
 
         T opprinneligVerdi = finnNode(indeks).verdi;     // oppretter hjelpvariabel
@@ -354,10 +472,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         antall--; endringer++;                    // reduserer antallet til listen
         return opprinneligVerdi;
 
+        */
     }
 
     @Override
     public void nullstill() {
+
+        //måte 1
+        
+        //måte 2
+
+
+
+        /*
         //måte 1 - 12 ms
 
         if(antall == 0){return;}    //tom tabell er nullstilt
@@ -379,10 +506,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             valgtNode = valgtNode.neste;
         }
 
-         */
         if(valgtNode != null){
             valgtNode.forrige.neste = null;
         }
+        */
     }
 
     @Override

@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06cea197-0666-4b22-b2f7-537b7285ee90" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Beholder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Beholder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$DobbeltLenketListeIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$DobbeltLenketListeIterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Liste.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Liste.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/no/oslomet/cs/algdat/Oblig2/Oblig2Test$1Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/no/oslomet/cs/algdat/Oblig2/Oblig2Test$1Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/no/oslomet/cs/algdat/Oblig2/Oblig2Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/no/oslomet/cs/algdat/Oblig2/Oblig2Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/no/oslomet/cs/algdat/Oblig2/DobbeltLenketListe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/no/oslomet/cs/algdat/Oblig2/Oblig2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/no/oslomet/cs/algdat/Oblig2/Oblig2Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +60,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SJEKKER" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
-  <component name="RunManager" selected="Gradle.Oblig2Test">
+  <component name="RunManager" selected="Android JUnit.Oblig2Test">
     <configuration name="Oblig2Test" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="algdat-2022-oblig-2-master.test" />
       <extension name="coverage">
@@ -114,9 +123,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android JUnit.Oblig2Test" />
         <item itemvalue="Gradle.Oblig2Test" />
         <item itemvalue="Gradle.Oblig2Test.oppgave6" />
-        <item itemvalue="Android JUnit.Oblig2Test" />
       </list>
     </recent_temporary>
   </component>
@@ -145,16 +154,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/no/oslomet/cs/algdat/Oblig2/Oblig2Test.java</url>
-          <line>773</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/no/oslomet/cs/algdat/Oblig2/Oblig2Test.java</url>
-          <line>731</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../DATS2300-1_22H/Oblig 2 kladd/Oblig2Test.java</url>
           <line>730</line>
