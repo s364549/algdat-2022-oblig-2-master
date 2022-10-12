@@ -292,9 +292,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return false;
         }
 
-        int teller = 0;
+        int teller = 0;         //teller som hjelpevariabel
         Node<T> current = hode;
-        while(!current.verdi.equals(verdi) ){
+
+        while(!current.verdi.equals(verdi) ){ //så sant vi ikke står i riktig verdi fortsetter vi å iterere
             current = current.neste;
             teller++;
             if(current == null){
@@ -304,11 +305,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(antall == 0){
             return false;
         }
-        else if(antall == 1){
+        else if(antall == 1){ //om det kun er igjen et element så kan vi sette hode og hale til null
 
             hode = hale = null;
         }
-        else if(teller+1 == antall){
+        else if(teller+1 == antall){  //om teller+1 = antall står vi i halen og vil dermed fjerne den
             current = hale;
             Node<T> hjelpeNode = current.forrige;
 
@@ -316,25 +317,25 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale.forrige = null;
             hale = hjelpeNode;
         }
-        else if(teller == 0){
+        else if(teller == 0){ //om teller er 0 så står vi i hodet og vil dermed fjerne den
             hode = hode.neste;
             hode.forrige = null;
         }
-        else if(teller < antall/2){
+        else if(teller < antall/2){ //sjekker om vi skal begynne i hode eller i halen gjennom lista
             current = hode;
             for (int i = 0; i < teller; i++) {
                 current = current.neste;
 
             }
 
-            Node<T> hjelpeNodeNeste = current.neste;
-            Node<T> hjelpeNodeForrige = current.forrige;
-            hjelpeNodeForrige.neste = hjelpeNodeNeste;
-            hjelpeNodeNeste.forrige = hjelpeNodeForrige;
+            Node<T> hjelpeNodeNeste = current.neste;    //hjelpeNode som referer til neste verdi i lista
+            Node<T> hjelpeNodeForrige = current.forrige;//hjelpeNode som referer til forrige verdi i lista
+            hjelpeNodeForrige.neste = hjelpeNodeNeste;  //setter riktige verdier
+            hjelpeNodeNeste.forrige = hjelpeNodeForrige;//setter riktige verdier
 
         }
         else{
-            current = hale;
+            current = hale; //starter bakerst
             for (int i = antall-1; i > teller; i--) {
                 current = current.forrige;
 
@@ -398,9 +399,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         else{
-            T returVerdi = finnNode(indeks).verdi;
+            T returVerdi = finnNode(indeks).verdi; //skal returnere verdien til noden av indeks
             Node<T> current;
-
+            //ellers fungerer denne metoden meget likt som fjern(T)
             if(antall == 0){
                 return null;
             }
@@ -481,7 +482,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void nullstill() {
 
         //måte 1
-        if(antall != 0){
+        if(antall != 0){ //sjekker at vi ikke har en tom liste
 
             Node<T> current = hode;
             Node<T> hjelpeNode;
@@ -637,7 +638,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
             fjernOK = false; // setter fjernOK til false om den gikk gjennom begge if setningene
 
-            Node<T> q = hode; // oppretter hjelpevariabel
+            if(antall == 1){ //hvis vi bare har et element i lista, så fjernes det
+                hale = hode = null;
+            }
+            else if(denne == null){ //om denne = null betyr det at vi står i halen
+                hale = hale.forrige;
+                hale.neste = null;
+            }
+            else if(denne.forrige.forrige == null){ //hvis denne.forrige.forrige = null så vet vi at hodet skal fjernes
+                hode = denne;
+                hode.forrige = null;
+            }
+            else{ //base-case 
+                denne.forrige.forrige.neste = denne;
+                denne.forrige = denne.forrige.forrige;
+            }
+            antall--; endringer++; iteratorendringer++;
+
+            /*Node<T> q = hode; // oppretter hjelpevariabel
 
             if (hode.neste == denne) {    //sjekker om denne er første node
                 hode = hode.neste;
@@ -661,7 +679,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             q.verdi = null;         // nuller ut verdien
             q.neste = null;         // nuller ut neste pekeren
 
-            antall--;               // reduserer antall
+           antall--;               // reduserer antall
+           */
+
         }
 
     } // class DobbeltLenketListeIterator
