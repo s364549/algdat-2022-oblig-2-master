@@ -177,20 +177,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> nyNode = new Node(verdi);
 
         if(antall == 0) { //hvis det ikke finnes noe liste fra før av så skapes den her
-            /*
-            hode = hale = nyNode;
-            hode.neste = nyNode;
-            hale.forrige = nyNode;
-            hode.forrige = null;
-            hale.neste = null;
-            */
             leggInn(verdi);
         }
 
         else if(indeks == 0){            //om den nye skal legges inn i 0, blir den nytt hode
             Node current = hode;
 
-            nyNode.neste = current;     //nyNode sin neste peker til hode sin verdi
+            nyNode.neste = current;     //nyNode sin neste peker blir til hode sin verdi
             current.forrige = nyNode;   //hode sin forrige peker til den nye noden
             hode = nyNode;              //nyNode er nå det nye hodet
             hode.forrige = null;
@@ -198,16 +191,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         else if(indeks == antall){          //om den nye noden skal legges inn som hale
-            /*
-            Node current = hale;
-
-            nyNode.forrige = current;       //nyNode forrige blir peker til halen
-            current.neste = nyNode;         //halen sin neste peker til nyNode
-            hale = nyNode;                  //nyNode blir her til halen
-            hale.neste = null;              //halen neste peker er null
-            endringer++; antall++;
-
-             */
             leggInn(verdi);
         }
 
@@ -349,45 +332,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
         antall--; endringer ++;
         return true;
-
-        /*if (verdi == null) {        // sjekker om verdi er null
-            return false;
-        }
-
-        Node<T> q = hode, p = null; // opretter hjelpepekere
-
-        while (q != null) {         // løkke for å finne verdien
-            if (q.verdi.equals(verdi)) {
-                break;              // bryter ut av løkka når verdien er funnet
-            }
-            p = q;                  // setter p til forgjengeren til q
-            q = q.neste;
-        }
-
-        if (q == null) {            // fant ikke verdien
-            return false;
-        } else if (q == hode) {     // sjekker om q er første node
-
-            hode = hode.neste;      // går over q
-            //hode.forrige = null;
-            //[hode -> a, <-b,c]
-            //[a, hode-> a<-b,c]
-            //[a, hode-> b, null <- b, c]
-        } else {
-            p.neste = q.neste;      // hopper over q og fjerner valgt node
-        }
-
-        if (q == hale) {            // sjekker om q er siste node
-            hale = p;               // setter hale til p slik at q blir fjernet
-            //hale.neste = null;
-        }
-
-        q.verdi = null;             // nuller ut verdien til q
-        q.neste = null;             // nuller ut nestepekeren
-
-        antall--; endringer++;                   // reduserer antallet til listen
-        return true;                // returnerer at fjerningen var vellykket
-        */
     }
 
     @Override
@@ -449,39 +393,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             antall--; endringer ++;
             return returVerdi;
         }
-
-        /*indeksKontroll(indeks, false);
-        if(antall == 0){return null;} //opprinnelig verdi til en ikke eksisterend node er null
-
-        T opprinneligVerdi = finnNode(indeks).verdi;     // oppretter hjelpvariabel
-
-        if (indeks == 0) {          // sjekker om indeksen er første noden
-            hode = hode.neste;      // setter hoden til neste verdi og fjerner første node
-
-            if (antall == 1) {      //brukes om det bare er en verdi i listen
-                hale = hode = null;
-            }
-        } else {
-            Node<T> p = finnNode(indeks - 1); // setter p til noden før indeksen
-            Node<T> q = p.neste;    // setter q til noden som skal fjernes
-
-            if (q == hale) {        // sjekker om noden som skal fjernes er siste node
-                hale = p;           // fjerner siste node
-                hale.neste = null;
-            }
-                p.neste = q.neste;      // hopper over q og fjerner q fra listen
-
-        }
-        antall--; endringer++;                    // reduserer antallet til listen
-        return opprinneligVerdi;
-
-        */
     }
 
     @Override
     public void nullstill() {
 
-        //måte 1
+        //måte 1 - 14ms
         if(antall != 0){ //sjekker at vi ikke har en tom liste
 
             Node<T> current = hode;
@@ -503,38 +420,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         }
 
-        //måte 2
+        //måte 2 - 15ms
+
         int teller = antall;
         for (int i = 0; i < teller; i++) {
             fjern(0);
         }
-
-        /*
-        //måte 1 - 12 ms
-
-        if(antall == 0){return;}    //tom tabell er nullstilt
-
-        Node<T> valgtNode = hode;
-
-        //måte 1.
-        while(valgtNode != null){
-            valgtNode.neste = valgtNode.forrige = null;
-            valgtNode.verdi = null;
-            valgtNode = valgtNode.neste;
-        }
-        valgtNode.forrige = null;
-
-        //måte 2
-        /*
-        while(valgtNode != null){
-            fjern(0);
-            valgtNode = valgtNode.neste;
-        }
-
-        if(valgtNode != null){
-            valgtNode.forrige.neste = null;
-        }
-        */
     }
 
     @Override
@@ -602,6 +493,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks) {
+            indeksKontroll(indeks, false);
             denne = finnNode(indeks);                       //setter denne til å være hode
             fjernOK = false;                    //setter fjernOK til false, denne blir true gjennom Next
             iteratorendringer = endringer;      //teller endringer
@@ -654,33 +546,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 denne.forrige = denne.forrige.forrige;
             }
             antall--; endringer++; iteratorendringer++;
-
-            /*Node<T> q = hode; // oppretter hjelpevariabel
-
-            if (hode.neste == denne) {    //sjekker om denne er første node
-                hode = hode.neste;
-                if (denne == null) {      //sjekker om listen er tom
-                    hale = null;
-                }
-            } else {
-                Node<T> r = hode;          //oppretter forgjenger
-
-                while(r.neste.neste != denne) { // while-løkke for å finne forgjengeren til forgjerngeren til denne
-                    r = r.neste; // flytter r
-                }
-
-                q = r.neste;        // setter q som noden som skal fjernes
-                r.neste = denne;    // hopper over q
-                if (denne == null) { // sjekker om q var siste noden i listen
-                    hale = r;
-                }
-            }
-
-            q.verdi = null;         // nuller ut verdien
-            q.neste = null;         // nuller ut neste pekeren
-
-           antall--;               // reduserer antall
-           */
 
         }
 
